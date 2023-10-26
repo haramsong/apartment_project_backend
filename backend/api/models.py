@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 
@@ -6,7 +7,7 @@ class Attachs(models.Model):
     reg_date = models.DateTimeField(db_column='REG_DATE', db_comment='등록일')  # Field name made lowercase.
     upload_path = models.CharField(db_column='UPLOAD_PATH', max_length=200, db_comment='파일 경로')  # Field name made lowercase.
     file_name = models.CharField(db_column='FILE_NAME', max_length=200, db_comment='파일 이름')  # Field name made lowercase.
-    file_type = models.TextField(db_column='FILE_TYPE', db_comment='이미지 파일 여부[ 0(이미지 파일), 1(이미지 파일X) ]')  # Field name made lowercase. This field type is a guess.
+    file_type = models.CharField(db_column='FILE_TYPE', max_length=1, db_comment='이미지 파일 여부[ 0(이미지 파일), 1(이미지 파일X) ]')  # Field name made lowercase. This field type is a guess.
     content_type = models.CharField(db_column='CONTENT_TYPE', max_length=1, db_comment='게시물 타입 [ B(BOARD_CONTENTS), C(COMPLAINT_CONTENTS), S(SHAREPLACE_CONTENTS) ]')  # Field name made lowercase. This field type is a guess.
     content_idx = models.IntegerField(db_column='CONTENT_IDX', db_comment='게시물 IDX')  # Field name made lowercase. This field type is a guess.
 
@@ -22,7 +23,7 @@ class BoardContents(models.Model):
     content = models.TextField(db_column='CONTENT', db_comment='본문 내용')  # Field name made lowercase.
     usergroup_idx = models.IntegerField(db_column='USERGROUP_IDX', db_comment='주민 그룹 IDX')  # Field name made lowercase.
     cnt = models.IntegerField(db_column='CNT', db_comment='조회수')  # Field name made lowercase.
-    attach = models.TextField(db_column='ATTACH', blank=True, null=True, db_comment='첨부파일 idx')  # Field name made lowercase. This field type is a guess.
+    attach = ArrayField(models.IntegerField(db_column='ATTACH', blank=True, null=True, db_comment='첨부파일 idx'))  # Field name made lowercase.
     blind_flag = models.CharField(db_column='BLIND_FLAG', max_length=1, db_comment='블라인드 flag')  # Field name made lowercase.
     like_cnt = models.IntegerField(db_column='LIKE_CNT', db_comment='좋아요 수')  # Field name made lowercase.
     created_at = models.DateTimeField(db_column='CREATED_AT', db_comment='생성일')  # Field name made lowercase.
@@ -53,7 +54,7 @@ class UserGroups(models.Model):
     idx = models.AutoField(db_column='IDX', db_comment='인덱스 값', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='NAME', max_length=30, db_comment='그룹명')  # Field name made lowercase.
     content = models.CharField(db_column='CONTENT', max_length=300, db_comment='그룹 소개')  # Field name made lowercase.
-    public_flag = models.CharField(db_column='PUBLIC_FLAG', max_length=1, db_comment='공개 여부 flag')  # Field name made lowercase. This field type is a guess.
+    public_flag = models.CharField(db_column='PUBLIC_FLAG', max_length=1, db_comment='공개 여부 flag')  # Field name made lowercase.
     danji_code = models.IntegerField(db_column='DANJI_CODE', db_comment='단지 코드')  # Field name made lowercase.
     created_at = models.DateTimeField(db_column='CREATED_AT', db_comment='생성일')  # Field name made lowercase.
     created_by = models.IntegerField(db_column='CREATED_BY', db_comment='생성자')  # Field name made lowercase.
