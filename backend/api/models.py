@@ -8,6 +8,7 @@ class Attachs(models.Model):
     file_name = models.CharField(db_column='FILE_NAME', max_length=200, db_comment='파일 이름')  # Field name made lowercase.
     file_type = models.TextField(db_column='FILE_TYPE', db_comment='이미지 파일 여부[ 0(이미지 파일), 1(이미지 파일X) ]')  # Field name made lowercase. This field type is a guess.
     content_type = models.CharField(db_column='CONTENT_TYPE', max_length=1, db_comment='게시물 타입 [ B(BOARD_CONTENTS), C(COMPLAINT_CONTENTS), S(SHAREPLACE_CONTENTS) ]')  # Field name made lowercase. This field type is a guess.
+    content_idx = models.IntegerField(db_column='CONTENT_IDX', db_comment='게시물 IDX')  # Field name made lowercase. This field type is a guess.
 
     class Meta:
         managed = False
