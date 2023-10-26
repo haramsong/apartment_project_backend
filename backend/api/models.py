@@ -3,13 +3,13 @@ from django.db import models
 
 
 class Attachs(models.Model):
-    idx = models.AutoField(db_column='IDX', db_comment='인덱스 값', primary_key=True)  # Field name made lowercase.
-    reg_date = models.DateTimeField(db_column='REG_DATE', db_comment='등록일')  # Field name made lowercase.
-    upload_path = models.CharField(db_column='UPLOAD_PATH', max_length=200, db_comment='파일 경로')  # Field name made lowercase.
-    file_name = models.CharField(db_column='FILE_NAME', max_length=200, db_comment='파일 이름')  # Field name made lowercase.
-    file_type = models.CharField(db_column='FILE_TYPE', max_length=1, db_comment='이미지 파일 여부[ 0(이미지 파일), 1(이미지 파일X) ]')  # Field name made lowercase. This field type is a guess.
-    content_type = models.CharField(db_column='CONTENT_TYPE', max_length=1, db_comment='게시물 타입 [ B(BOARD_CONTENTS), C(COMPLAINT_CONTENTS), S(SHAREPLACE_CONTENTS) ]')  # Field name made lowercase. This field type is a guess.
-    content_idx = models.IntegerField(db_column='CONTENT_IDX', db_comment='게시물 IDX')  # Field name made lowercase. This field type is a guess.
+    idx = models.AutoField(db_column='IDX', db_comment='인덱스 값', primary_key=True)  
+    reg_date = models.DateTimeField(db_column='REG_DATE', db_comment='등록일')  
+    upload_path = models.CharField(db_column='UPLOAD_PATH', max_length=200, db_comment='파일 경로')  
+    file_name = models.CharField(db_column='FILE_NAME', max_length=200, db_comment='파일 이름')  
+    file_type = models.CharField(db_column='FILE_TYPE', max_length=1, db_comment='이미지 파일 여부[ 0(이미지 파일), 1(이미지 파일X) ]')
+    content_type = models.CharField(db_column='CONTENT_TYPE', max_length=1, db_comment='게시물 타입 [ B(BOARD_CONTENTS), C(COMPLAINT_CONTENTS), S(SHAREPLACE_CONTENTS) ]')
+    content_idx = models.IntegerField(db_column='CONTENT_IDX', db_comment='게시물 IDX')
 
     class Meta:
         managed = False
@@ -18,17 +18,17 @@ class Attachs(models.Model):
 
 
 class BoardContents(models.Model):
-    idx = models.AutoField(db_column='IDX', db_comment='인덱스 값', primary_key=True)  # Field name made lowercase.
-    title = models.CharField(db_column='TITLE', max_length=30, db_comment='제목')  # Field name made lowercase.
-    content = models.TextField(db_column='CONTENT', db_comment='본문 내용')  # Field name made lowercase.
-    usergroup_idx = models.IntegerField(db_column='USERGROUP_IDX', db_comment='주민 그룹 IDX')  # Field name made lowercase.
-    cnt = models.IntegerField(db_column='CNT', db_comment='조회수')  # Field name made lowercase.
-    attach = ArrayField(models.IntegerField(db_column='ATTACH', blank=True, null=True, db_comment='첨부파일 idx'))  # Field name made lowercase.
-    blind_flag = models.CharField(db_column='BLIND_FLAG', max_length=1, db_comment='블라인드 flag')  # Field name made lowercase.
-    like_cnt = models.IntegerField(db_column='LIKE_CNT', db_comment='좋아요 수')  # Field name made lowercase.
-    created_at = models.DateTimeField(db_column='CREATED_AT', db_comment='생성일')  # Field name made lowercase.
-    updated_at = models.DateTimeField(db_column='UPDATED_AT', db_comment='수정일')  # Field name made lowercase.
-    user_idx = models.IntegerField(db_column='USER_IDX', db_comment='주민 IDX')  # Field name made lowercase.
+    idx = models.AutoField(db_column='IDX', db_comment='인덱스 값', primary_key=True)  
+    title = models.CharField(db_column='TITLE', max_length=30, db_comment='제목')  
+    content = models.TextField(db_column='CONTENT', db_comment='본문 내용')  
+    usergroup_idx = models.IntegerField(db_column='USERGROUP_IDX', db_comment='주민 그룹 IDX')  
+    cnt = models.IntegerField(db_column='CNT', db_comment='조회수')  
+    attach = ArrayField(models.IntegerField(db_column='ATTACH', blank=True, null=True, db_comment='첨부파일 idx'))  
+    blind_flag = models.CharField(db_column='BLIND_FLAG', max_length=1, db_comment='블라인드 flag')  
+    like_cnt = models.IntegerField(db_column='LIKE_CNT', db_comment='좋아요 수')  
+    created_at = models.DateTimeField(db_column='CREATED_AT', db_comment='생성일')  
+    updated_at = models.DateTimeField(db_column='UPDATED_AT', db_comment='수정일')  
+    user_idx = models.IntegerField(db_column='USER_IDX', db_comment='주민 IDX')  
 
     class Meta:
         managed = False
@@ -37,12 +37,12 @@ class BoardContents(models.Model):
 
 
 class Danjis(models.Model):
-    code = models.CharField(db_column='CODE', max_length=5, db_comment='단지 코드', primary_key=True)  # Field name made lowercase.
-    name = models.CharField(db_column='NAME', max_length=30, db_comment='단지명')  # Field name made lowercase.
-    tel = models.CharField(db_column='TEL', max_length=11, db_comment='전화번호')  # Field name made lowercase.
-    address = models.CharField(db_column='ADDRESS', max_length=300, db_comment='주소')  # Field name made lowercase.
-    greeting = models.CharField(db_column='GREETING', max_length=300, db_comment='단지 소개')  # Field name made lowercase.
-    profile_img = models.BinaryField(db_column='PROFILE_IMG', blank=True, null=True, db_comment='단지 썸네일 이미지')  # Field name made lowercase.
+    code = models.CharField(db_column='CODE', max_length=5, db_comment='단지 코드', primary_key=True)  
+    name = models.CharField(db_column='NAME', max_length=30, db_comment='단지명')  
+    tel = models.CharField(db_column='TEL', max_length=11, db_comment='전화번호')  
+    address = models.CharField(db_column='ADDRESS', max_length=300, db_comment='주소')  
+    greeting = models.CharField(db_column='GREETING', max_length=300, db_comment='단지 소개')  
+    profile_img = models.BinaryField(db_column='PROFILE_IMG', blank=True, null=True, db_comment='단지 썸네일 이미지')  
 
     class Meta:
         managed = False
@@ -51,15 +51,15 @@ class Danjis(models.Model):
 
 
 class UserGroups(models.Model):
-    idx = models.AutoField(db_column='IDX', db_comment='인덱스 값', primary_key=True)  # Field name made lowercase.
-    name = models.CharField(db_column='NAME', max_length=30, db_comment='그룹명')  # Field name made lowercase.
-    content = models.CharField(db_column='CONTENT', max_length=300, db_comment='그룹 소개')  # Field name made lowercase.
-    public_flag = models.CharField(db_column='PUBLIC_FLAG', max_length=1, db_comment='공개 여부 flag')  # Field name made lowercase.
-    danji_code = models.IntegerField(db_column='DANJI_CODE', db_comment='단지 코드')  # Field name made lowercase.
-    created_at = models.DateTimeField(db_column='CREATED_AT', db_comment='생성일')  # Field name made lowercase.
-    created_by = models.IntegerField(db_column='CREATED_BY', db_comment='생성자')  # Field name made lowercase.
-    updated_at = models.DateTimeField(db_column='UPDATED_AT', db_comment='수정일')  # Field name made lowercase.
-    updated_by = models.IntegerField(db_column='UPDATED_BY', db_comment='수정자')  # Field name made lowercase.
+    idx = models.AutoField(db_column='IDX', db_comment='인덱스 값', primary_key=True)  
+    name = models.CharField(db_column='NAME', max_length=30, db_comment='그룹명')  
+    content = models.CharField(db_column='CONTENT', max_length=300, db_comment='그룹 소개')  
+    public_flag = models.CharField(db_column='PUBLIC_FLAG', max_length=1, db_comment='공개 여부 flag')  
+    danji_code = models.IntegerField(db_column='DANJI_CODE', db_comment='단지 코드')  
+    created_at = models.DateTimeField(db_column='CREATED_AT', db_comment='생성일')
+    created_by = models.IntegerField(db_column='CREATED_BY', db_comment='생성자')
+    updated_at = models.DateTimeField(db_column='UPDATED_AT', db_comment='수정일')
+    updated_by = models.IntegerField(db_column='UPDATED_BY', db_comment='수정자') 
 
     class Meta:
         managed = False
