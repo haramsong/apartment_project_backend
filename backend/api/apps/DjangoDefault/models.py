@@ -3,7 +3,10 @@ from django.db import models
 
 
 class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150)
+    name = models.CharField(
+        unique=True,
+        max_length=150,
+    )
 
     class Meta:
         managed = False
@@ -11,9 +14,17 @@ class AuthGroup(models.Model):
 
 
 class AuthGroupPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
+    id = models.BigAutoField(
+        primary_key=True,
+    )
+    group = models.ForeignKey(
+        AuthGroup,
+        models.DO_NOTHING,
+    )
+    permission = models.ForeignKey(
+        'AuthPermission',
+        models.DO_NOTHING,
+    )
 
     class Meta:
         managed = False
@@ -22,9 +33,16 @@ class AuthGroupPermissions(models.Model):
 
 
 class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
+    name = models.CharField(
+        max_length=255,
+    )
+    content_type = models.ForeignKey(
+        'DjangoContentType',
+        models.DO_NOTHING,
+    )
+    codename = models.CharField(
+        max_length=100,
+    )
 
     class Meta:
         managed = False
@@ -33,13 +51,27 @@ class AuthPermission(models.Model):
 
 
 class AuthUser(models.Model):
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
+    password = models.CharField(
+        max_length=128,
+    )
+    last_login = models.DateTimeField(
+        blank=True,
+        null=True,
+    )
     is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
+    username = models.CharField(
+        unique=True,
+        max_length=150,
+    )
+    first_name = models.CharField(
+        max_length=150,
+    )
+    last_name = models.CharField(
+        max_length=150,
+    )
+    email = models.CharField(
+        max_length=254,
+    )
     is_staff = models.BooleanField()
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
@@ -50,9 +82,17 @@ class AuthUser(models.Model):
 
 
 class AuthUserGroups(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+    id = models.BigAutoField(
+        primary_key=True,
+    )
+    user = models.ForeignKey(
+        AuthUser,
+        models.DO_NOTHING,
+    )
+    group = models.ForeignKey(
+        AuthGroup,
+        models.DO_NOTHING,
+    )
 
     class Meta:
         managed = False
@@ -61,9 +101,17 @@ class AuthUserGroups(models.Model):
 
 
 class AuthUserUserPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
+    id = models.BigAutoField(
+        primary_key=True
+    )
+    user = models.ForeignKey(
+        AuthUser,
+        models.DO_NOTHING,
+    )
+    permission = models.ForeignKey(
+        AuthPermission,
+        models.DO_NOTHING,
+    )
 
     class Meta:
         managed = False
@@ -73,12 +121,25 @@ class AuthUserUserPermissions(models.Model):
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200)
+    object_id = models.TextField(
+        blank=True,
+        null=True,
+    )
+    object_repr = models.CharField(
+        max_length=200,
+    )
     action_flag = models.SmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    content_type = models.ForeignKey(
+        'DjangoContentType',
+        models.DO_NOTHING,
+        blank=True,
+        null=True,
+    )
+    user = models.ForeignKey(
+        AuthUser,
+        models.DO_NOTHING,
+    )
 
     class Meta:
         managed = False
@@ -86,8 +147,12 @@ class DjangoAdminLog(models.Model):
 
 
 class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
+    app_label = models.CharField(
+        max_length=100,
+    )
+    model = models.CharField(
+        max_length=100,
+    )
 
     class Meta:
         managed = False
@@ -96,9 +161,15 @@ class DjangoContentType(models.Model):
 
 
 class DjangoMigrations(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
+    id = models.BigAutoField(
+        primary_key=True,
+    )
+    app = models.CharField(
+        max_length=255,
+    )
+    name = models.CharField(
+        max_length=255,
+    )
     applied = models.DateTimeField()
 
     class Meta:
@@ -107,7 +178,10 @@ class DjangoMigrations(models.Model):
 
 
 class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
+    session_key = models.CharField(
+        primary_key=True,
+        max_length=40,
+    )
     session_data = models.TextField()
     expire_date = models.DateTimeField()
 
