@@ -1,4 +1,9 @@
 from django.db import models
+import os
+
+
+def get_image_path(instance, filename):
+    return os.path.join(str(instance.code), 'logo', filename)
 
 
 class Danjis(models.Model):
@@ -28,11 +33,12 @@ class Danjis(models.Model):
         max_length=300,
         db_comment='단지 소개',
     )
-    profile_img = models.BinaryField(
+    profile_img = models.ImageField(
         db_column='PROFILE_IMG',
         blank=True,
         null=True,
         db_comment='단지 썸네일 이미지',
+        upload_to=get_image_path,
     )
 
     class Meta:
